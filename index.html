@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="pageTitle">‰Ÿ«„ «·„” ‘›Ï «·–ﬂÌ</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root { --p-color: #2c3e50; --a-color: #3498db; }
+        body { font-family: 'Segoe UI', Tahoma, sans-serif; background: #f4f7f6; margin: 0; color: #333; }
+        
+        /* «·ÂÌœ— Ê«·ﬁ«∆„… */
+        header { background: var(--p-color); color: white; padding: 15px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 10px rgba(0,0,0,0.2); }
+        .dots-menu { cursor: pointer; position: relative; width: 30px; text-align: center; }
+        .dropdown { display: none; position: absolute; left: 0; top: 35px; background: white; box-shadow: 0 8px 25px rgba(0,0,0,0.2); border-radius: 12px; min-width: 200px; overflow: hidden; }
+        .dropdown a { color: #333; padding: 14px; text-decoration: none; display: block; border-bottom: 1px solid #eee; font-size: 14px; transition: 0.3s; }
+        .dropdown a:hover { background: #f8f9fa; color: var(--a-color); }
+
+        /* «·»ÿ«ﬁ«  Ê«·Ãœ«Ê· */
+        .container { padding: 15px; max-width: 900px; margin: auto; }
+        .card { background: white; padding: 20px; border-radius: 20px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); margin-bottom: 20px; }
+        h3 { color: var(--p-color); border-right: 4px solid var(--a-color); padding-right: 10px; margin-top: 0; }
+        
+        input, select { width: 100%; padding: 12px; margin: 10px 0; border: 1px solid #ddd; border-radius: 12px; font-size: 15px; outline: none; }
+        button { width: 100%; padding: 14px; background: var(--a-color); color: white; border: none; border-radius: 12px; font-weight: bold; cursor: pointer; font-size: 16px; transition: 0.3s; }
+        button:active { transform: scale(0.98); }
+        
+        table { width: 100%; border-collapse: collapse; margin-top: 15px; background: white; border-radius: 12px; overflow: hidden; }
+        th, td { padding: 15px; border-bottom: 1px solid #eee; text-align: center; font-size: 14px; }
+        th { background: #f8f9fa; color: var(--p-color); font-weight: 600; }
+
+        .screen { display: none; animation: fadeIn 0.4s; }
+        .active { display: block; }
+        @keyframes fadeIn { from {opacity: 0; transform: translateY(10px);} to {opacity: 1; transform: translateY(0);} }
+        
+        .dev-footer { text-align: center; padding: 30px; color: #7f8c8d; font-size: 13px; line-height: 1.6; }
+        .badge { background: var(--a-color); color: white; padding: 4px 10px; border-radius: 8px; font-size: 12px; }
+        .nav-bar { display: flex; background: white; border-radius: 15px; margin-bottom: 20px; padding: 5px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
+        .nav-btn { flex: 1; padding: 12px; text-align: center; cursor: pointer; border-radius: 10px; transition: 0.3s; font-weight: 600; color: #7f8c8d; }
+        .nav-btn.active-tab { background: var(--a-color); color: white; }
+    </style>
+</head>
+<body>
+
+    <div id="loginScreen" class="screen active">
+        <div class="container" style="margin-top: 60px;">
+            <div class="card" style="text-align: center; padding: 40px 20px;">
+                <h2 id="loginTitle" style="margin-bottom: 10px;">„” ‘›Ï √ﬂ—„ ÕÊ«”</h2>
+                <p style="color: #7f8c8d; margin-bottom: 30px;">‰Ÿ«„ «·≈œ«—… «·„ ﬂ«„· - ‰”Œ… 2026</p>
+                <i class="fas fa-hospital-symbol fa-5x" style="color: var(--a-color); margin-bottom: 30px;"></i>
+                <input type="text" id="u" placeholder="«”„ «·„” Œœ„">
+                <input type="password" id="p" placeholder="ﬂ·„… «·„—Ê—">
+                <button onclick="login()">œŒÊ· ··‰Ÿ«„</button>
+                <p style="font-size: 12px; cursor: pointer; color: #95a5a6; margin-top: 20px;" onclick="go('set')">≈⁄œ«œ«  «·„’‰⁄</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="mainScreen" class="screen">
+        <header>
+            <span id="hName" style="font-size: 18px; font-weight: bold;">«”„ «·„” ‘›Ï</span>
+            <div class="dots-menu" onclick="toggleM()">
+                <i class="fas fa-ellipsis-v fa-lg"></i>
+                <div id="drop" class="dropdown">
+                    <a onclick="go('set')"><i class="fas fa-tools"></i> «·≈⁄œ«œ«  Ê«· Œ’Ì’</a>
+                    <a onclick="go('staff')"><i class="fas fa-user-md"></i> ≈œ«—… «·ÿ«ﬁ„ «·ÿ»Ì</a>
+                    <a onclick="location.reload()"><i class="fas fa-power-off"></i>  ”ÃÌ· «·Œ—ÊÃ</a>
+                </div>
+            </div>
+        </header>
+
+        <div class="container">
+            <div class="nav-bar">
+                <div id="t1" class="nav-btn active-tab" onclick="switchMainTab('patients')">«·„—÷Ï</div>
+                <div id="t2" class="nav-btn" onclick="switchMainTab('staff')">«·√ÿ»«¡ Ê«·„„—÷Ì‰</div>
+            </div>
+
+            <div id="pSec">
+                <div class="card">
+                    <h3> ”ÃÌ· „—Ì÷</h3>
+                    <input type="text" id="pName" placeholder="«”„ «·„—Ì÷">
+                    <input type="text" id="pAge" placeholder="«·”‰ / «· ‘ŒÌ’ «·„»œ∆Ì">
+                    <select id="pType">
+                        <option value="ﬂ‘› ⁄«œÌ">ﬂ‘› ⁄«œÌ</option>
+                        <option value="«” ‘«—…">«” ‘«—…</option>
+                        <option value="⁄„·Ì…">⁄„·Ì…</option>
+                        <option value="ÿÊ«—∆">ÿÊ«—∆</option>
+                    </select>
+                    <button onclick="addP()"><i class="fas fa-plus-circle"></i> ≈÷«›… ··„·›« </button>
+                </div>
+                <div class="card">
+                    <input type="text" id="search" onkeyup="searchP()" placeholder="«»ÕÀ ⁄‰ „—Ì÷ »«·«”„...">
+                    <div style="overflow-x: auto;">
+                        <table>
+                            <thead><tr><th>«·„—Ì÷</th><th>«·Õ«·…</th><th>«· «—ÌŒ</th><th>≈Ã—«¡</th></tr></thead>
+                            <tbody id="pTable"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div id="sSec" style="display: none;">
+                <div class="card">
+                    <h3>≈÷«›… „ÊŸ› ÿ»Ì</h3>
+                    <input type="text" id="sNameInput" placeholder="«”„ «·œﬂ Ê— √Ê «·„„—÷">
+                    <select id="sRole">
+                        <option value="œﬂ Ê—">œﬂ Ê—</option>
+                        <option value="„„—÷">„„—÷</option>
+                        <option value="›‰Ì">›‰Ì „⁄„·</option>
+                    </select>
+                    <input type="text" id="sSpec" placeholder="«· Œ’’ („À·«: ﬁ·» / Ã—«Õ…)">
+                    <button onclick="addStaff()" style="background: #27ae60;">Õ›Ÿ »Ì«‰«  «·„ÊŸ›</button>
+                </div>
+                <div class="card">
+                    <div style="overflow-x: auto;">
+                        <table>
+                            <thead><tr><th>«·«”„</th><th>«·— »…</th><th>«· Œ’’</th><th>Õ–›</th></tr></thead>
+                            <tbody id="sTable"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="setScreen" class="screen">
+        <div class="container">
+            <div class="card">
+                <h3> Œ’Ì’ «· ÿ»Ìﬁ</h3>
+                <label>«”„ «·„” ‘›Ï «·ÃœÌœ:</label>
+                <input type="text" id="sHName" placeholder="„À«·: „” ‘›Ï √ﬂ—„ «· Œ’’Ì">
+                <label>ÌÊ“— «·œŒÊ·:</label>
+                <input type="text" id="sHUser">
+                <label>»«”Ê—œ «·œŒÊ·:</label>
+                <input type="password" id="sHPass">
+                <label>·Ê‰ «·ÂÊÌ… («··Ê‰ «·—∆Ì”Ì):</label>
+                <input type="color" id="sHColor" value="#3498db" style="height: 50px;">
+                <button onclick="saveConfig()">Õ›Ÿ «· ⁄œÌ·« </button>
+                <button onclick="go('login')" style="background: #95a5a6; margin-top: 10px;">—ÃÊ⁄</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="dev-footer">
+         „  «·»—„Ã… Ê«· ÿÊÌ— »Ê«”ÿ… «·„»œ⁄:<br>
+        <strong style="color: var(--p-color); font-size: 16px;">Akram Hawas</strong><br>
+        <small>Ã„Ì⁄ «·ÕﬁÊﬁ „Õ›ÊŸ… © 2026</small>
+    </div>
+
+    <script>
+        // «·»Ì«‰«  «·√”«”Ì…
+        let patients = JSON.parse(localStorage.getItem('pts')) || [];
+        let staff = JSON.parse(localStorage.getItem('stf')) || [
+            {n: "œ. √ﬂ—„ ÕÊ«”", r: "œﬂ Ê—", s: "Ã—«Õ… ⁄«„…"},
+            {n: "√Õ„œ ⁄·Ì", r: "„„—÷", s: "ÿÊ«—∆"}
+        ];
+        let config = JSON.parse(localStorage.getItem('hCfg')) || {name: "„” ‘›Ï √ﬂ—„ ÕÊ«”", u: "admin", p: "1234", c: "#3498db"};
+
+        function go(s) {
+            document.querySelectorAll('.screen').forEach(x => x.classList.remove('active'));
+            document.getElementById(s + 'Screen').classList.add('active');
+            render();
+        }
+
+        function toggleM() {
+            let d = document.getElementById('drop');
+            d.style.display = d.style.display === 'block' ? 'none' : 'block';
+        }
+
+        function switchMainTab(t) {
+            document.getElementById('pSec').style.display = t === 'patients' ? 'block' : 'none';
+            document.getElementById('sSec').style.display = t === 'staff' ? 'block' : 'none';
+            document.getElementById('t1').classList.toggle('active-tab', t === 'patients');
+            document.getElementById('t2').classList.toggle('active-tab', t === 'staff');
+        }
+
+        //  ”ÃÌ· «·œŒÊ·
+        function login() {
+            if (document.getElementById('u').value === config.u && document.getElementById('p').value === config.p) {
+                go('main');
+            } else { alert("»Ì«‰«  «·œŒÊ· €Ì— ’ÕÌÕ…!"); }
+        }
+
+        // «·„—÷Ï
+        function addP() {
+            let n = document.getElementById('pName').value;
+            if(!n) return alert("„‰ ›÷·ﬂ «œŒ· «”„ «·„—Ì÷");
+            patients.push({n: n, a: document.getElementById('pAge').value, t: document.getElementById('pType').value, d: new Date().toLocaleDateString('ar-EG')});
+            localStorage.setItem('pts', JSON.stringify(patients));
+            document.getElementById('pName').value = "";
+            render();
+        }
+
+        function delP(i) {
+            patients.splice(i, 1);
+            localStorage.setItem('pts', JSON.stringify(patients));
+            render();
+        }
+
+        // «·ÿ«ﬁ„
+        function addStaff() {
+            let n = document.getElementById('sNameInput').value;
+            if(!n) return;
+            staff.push({n: n, r: document.getElementById('sRole').value, s: document.getElementById('sSpec').value});
+            localStorage.setItem('stf', JSON.stringify(staff));
+            render();
+        }
+
+        function delStaff(i) {
+            staff.splice(i, 1);
+            localStorage.setItem('stf', JSON.stringify(staff));
+            render();
+        }
+
+        // «·≈⁄œ«œ« 
+        function saveConfig() {
+            config = {
+                name: document.getElementById('sHName').value || config.name,
+                u: document.getElementById('sHUser').value || config.u,
+                p: document.getElementById('sHPass').value || config.p,
+                c: document.getElementById('sHColor').value
+            };
+            localStorage.setItem('hCfg', JSON.stringify(config));
+            alert(" „ Õ›Ÿ ≈⁄œ«œ« ﬂ «·Œ«’… »‰Ã«Õ!");
+            location.reload();
+        }
+
+        function render() {
+            document.getElementById('hName').innerText = config.name;
+            document.getElementById('loginTitle').innerText = config.name;
+            document.documentElement.style.setProperty('--a-color', config.c);
+
+            // ÃœÊ· «·„—÷Ï
+            let phtml = "";
+            patients.forEach((p, i) => {
+                phtml += `<tr><td>${p.n} <br><small>${p.a}</small></td><td><span class="badge">${p.t}</span></td><td>${p.d}</td><td><i class="fas fa-trash" onclick="delP(${i})" style="color:#e74c3c"></i></td></tr>`;
+            });
+            document.getElementById('pTable').innerHTML = phtml;
+
+            // ÃœÊ· «·ÿ«ﬁ„
+            let shtml = "";
+            staff.forEach((s, i) => {
+                shtml += `<tr><td>${s.n}</td><td>${s.r}</td><td>${s.s}</td><td><i class="fas fa-user-minus" onclick="delStaff(${i})" style="color:#e74c3c"></i></td></tr>`;
+            });
+            document.getElementById('sTable').innerHTML = shtml;
+        }
+
+        function searchP() {
+            let q = document.getElementById('search').value.toLowerCase();
+            let rs = document.getElementById('pTable').getElementsByTagName('tr');
+            for(let r of rs) { r.style.display = r.innerText.toLowerCase().includes(q) ? "" : "none"; }
+        }
+
+        window.onload = render;
+    </script>
+</body>
+</html>
